@@ -1,110 +1,77 @@
-# 🎤 Speech Emotion Recognition – Baseline Model
 
-This repository contains a baseline machine learning pipeline for **speech emotion recognition** using audio data. The model leverages the **RAVDESS dataset** and uses traditional signal processing techniques combined with a **Support Vector Machine (SVM)** classifier for predicting emotional states from speech.
 
 ---
 
-## 🎯 Objective
+# 🎙️ Speech Emotion Recognition with CNN + BiLSTM
 
-To classify emotional states such as `happy`, `sad`, `angry`, `calm`, `fearful`, etc., based on extracted features from audio clips.
-
----
-
-## 🧠 Feature Extraction
-
-The script extracts a combination of audio features using the `librosa` library:
-
-- **MFCCs (Mel Frequency Cepstral Coefficients)**
-- **Chroma Frequencies**
-- **Mel Spectrogram**
-- **Spectral Contrast**
-- **Tonnetz Features**
-
-These features are concatenated into a single vector for each audio clip.
+This project implements a deep learning pipeline for recognizing emotions from speech using the **RAVDESS** dataset. It combines **Mel spectrogram-based preprocessing** with a **CNN + BiLSTM architecture** to classify speech into 8 distinct emotional categories.
 
 ---
 
-## 🛠️ Model Pipeline
+## 📁 Dataset
 
-1. **Audio Preprocessing**
-   - Reads audio from `.wav` files.
-   - Parses file names to extract emotion labels.
-
-2. **Feature Extraction**
-   - Applies `librosa` to extract spectral and temporal features.
-
-3. **Classification**
-   - Uses **Support Vector Machine (SVM)** via `scikit-learn`.
-   - Applies **GridSearchCV** for hyperparameter tuning.
-
-4. **Evaluation**
-   - Prints accuracy, confusion matrix, and classification report.
+**RAVDESS (Ryerson Audio-Visual Database of Emotional Speech and Song)**  
+- Contains high-quality audio clips labeled with 8 emotions: *neutral, calm, happy, sad, angry, fearful, disgust, and surprised*.  
+- Balanced across actors and genders for robust training.
 
 ---
 
-## 📂 Project Structure
+## 🧠 Model Overview
 
-```
-.
-├── baseline_model.py       # Main training & evaluation script
-├── README.md               # Project overview and usage
-├── audio/                  # Directory where RAVDESS .wav files are extracted
-```
+- **Preprocessing**: Raw audio is converted into **Mel spectrograms**, which highlight the frequency-time structure of speech.
+- **Model Architecture**:
+  - `CNN` layers for local feature extraction from spectrogram images.
+  - `BiLSTM` layers to capture temporal patterns and context.
+- **Output**: Softmax classifier to predict one of the 8 emotional states.
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Requirements
 
-### 1. Clone the repository
+- Python ≥ 3.8  
+- TensorFlow  
+- NumPy  
+- Librosa  
+- Scikit-learn  
+- Matplotlib
 
-```bash
-git clone https://github.com/yourusername/speech-emotion-baseline.git
-cd speech-emotion-baseline
-```
-
-### 2. Install dependencies
+Install dependencies using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Download the RAVDESS dataset
+---
 
-- Download the `.zip` or audio files from [RAVDESS official site](https://zenodo.org/record/1188976).
-- Unzip the files into an `audio/` folder in the project root.
+## 🚀 How to Run
 
-### 4. Run the model
-
-```bash
-python baseline_model.py
-```
+1. **Preprocess the dataset**:
+   - Convert audio clips to Mel spectrograms using Librosa.
+2. **Train the model**:
+   - Run `nn_final_update.py` to train CNN + BiLSTM on the processed dataset.
+3. **Evaluate results**:
+   - The model reports accuracy, loss, and classification metrics on a validation set.
 
 ---
 
-## 📊 Output
+## 📊 Results
 
-After training, the script will display:
-- Accuracy score
-- Confusion matrix (visualized with seaborn)
-- Classification report with precision, recall, and F1-score
+The model demonstrates strong performance in recognizing emotional cues from speech, with notable accuracy improvements due to the combination of CNN feature extraction and BiLSTM temporal modeling.
 
 ---
 
-## 📚 Requirements
+## 💡 Applications
 
-- `numpy`
-- `pandas`
-- `matplotlib`
-- `seaborn`
-- `librosa`
-- `scikit-learn`
+- Emotion-aware virtual assistants  
+- Mental health monitoring through voice  
+- Intelligent customer service interactions  
+- Affective computing in games and education  
 
 ---
 
-## 👏 Acknowledgements
+## 📌 Acknowledgments
 
-- Based on the [RAVDESS Dataset](https://zenodo.org/record/1188976)
-- Built using `librosa`, `sklearn`, and `matplotlib`
+- [RAVDESS Dataset](https://zenodo.org/record/1188976)
+- Inspired by work in speech-based affective computing and deep learning for audio processing.
 
 ---
-
